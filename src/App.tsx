@@ -2,12 +2,10 @@ import { useNavigate } from "react-router";
 import "./App.css";
 import Navigation from "./route";
 import { useUserProfileContext } from "./context/userProfile.context";
-import { useState } from "react";
 
 function App() {
   const navigate = useNavigate();
-  const { setRole } = useUserProfileContext();
-  const [value, setValue] = useState("");
+  const { setRole, role } = useUserProfileContext();
   return (
     <>
       <div className="flex p-4 gap-6">
@@ -20,7 +18,7 @@ function App() {
               }}
               className="bg-white p-2 rounded-md"
             >
-              <div className="p-2 border rounmded-md">{item}</div>
+              <div className="p-2 border rounded-md">{item}</div>
             </button>
           ))}
         </div>
@@ -29,19 +27,26 @@ function App() {
         </div>
       </div>
       <div className="flex items-center  justify-center gap-2 p-6">
-        <input
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          className="border rounded-md p-2"
-        />
         <button
           onClick={() => {
-            setRole(value);
+            setRole("Planner");
           }}
           className="border rounded-md p-2"
         >
-          Update Role
+          Set Planner Role
         </button>
+        <button
+          onClick={() => {
+            setRole("Admin");
+          }}
+          className="border rounded-md p-2"
+        >
+          Set Admin Role
+        </button>
+      </div>
+
+      <div className="flex items-center justify-center">
+        Current Role {role}
       </div>
     </>
   );

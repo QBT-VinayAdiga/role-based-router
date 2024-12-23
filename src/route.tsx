@@ -19,6 +19,14 @@ const Navigation = () => {
       <Route element={<ProtectedRoute allowedRoles={["Admin"]} />}>
         <Route path="/admin" element={<Admin />} />
       </Route>
+      <Route
+        path="/unauthorized"
+        element={
+          <div className="flex items-center justify-center text-red-600 text-lg font-medium">
+            Unauthorized
+          </div>
+        }
+      />
     </Routes>
   );
 };
