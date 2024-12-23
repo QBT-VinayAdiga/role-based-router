@@ -3,7 +3,9 @@ import Home from "./pages/home";
 import ProtectedRoute from "./protectedRoute";
 import Admin from "./pages/admin";
 import About from "./pages/about";
-import PlannerRoutes from "./routes/plannerRoutes";
+import { lazy } from "react";
+
+const PlannerRoutes = lazy(() => import("./routes/plannerRoutes"));
 
 const Navigation = () => {
   return (
@@ -13,7 +15,7 @@ const Navigation = () => {
       <Route path="/about" element={<About />} />
 
       <Route element={<ProtectedRoute allowedRoles={["Admin", "Planner"]} />}>
-        <Route path="/planner/*" Component={PlannerRoutes} />
+        <Route path="/planner/*" element={<PlannerRoutes />} />
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={["Admin"]} />}>
