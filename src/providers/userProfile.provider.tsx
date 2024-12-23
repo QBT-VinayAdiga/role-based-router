@@ -16,7 +16,7 @@ const UserProfileProvider: React.FC<UserProfileProviderProperties> = (
     if (role) {
       setCurrentRole(role);
     }
-  }, []);
+  }, [role]);
 
   const setRole = (value: string) => {
     setCurrentRole(value);
@@ -26,7 +26,11 @@ const UserProfileProvider: React.FC<UserProfileProviderProperties> = (
     <UserProfileContext.Provider
       value={{ role: currentRole, setRole: setRole }}
     >
-      {role ? props.children : <div>Loading...</div>}
+      {currentRole !== "" && currentRole ? (
+        props.children
+      ) : (
+        <div>Loading...</div>
+      )}
     </UserProfileContext.Provider>
   );
 };

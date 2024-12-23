@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router";
 import "./App.css";
-import Navigation from "./route";
 import { useUserProfileContext } from "./context/userProfile.context";
+import { lazy } from "react";
+
+const Navigation = lazy(async () => import("./route"));
 
 function App() {
   const navigate = useNavigate();
